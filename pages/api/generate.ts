@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../utils/supabaseClient";
 
-type Quote = {
+export type Quote = {
+  original: string;
   substring: string;
   message?: string;
 };
@@ -29,10 +30,10 @@ export default async function handler(
       end > i;
       end--
     ) {
-      let mess = words.slice(i, end).join(" ");
+      const original = words.slice(i, end).join(" ");
 
       // remove capitalization, punctuation, and extra spaces
-      mess = mess.toLowerCase();
+      let mess = original.toLowerCase();
       mess = mess.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+]/g, "");
       mess = mess.replace(/\s{2,}/g, " ");
 
@@ -43,10 +44,12 @@ export default async function handler(
 
       // quote exist with matching substring
       if (fetchedQuotes.data?.length) {
-        const quote = fetchedQuotes.data[0];
+        const index = Math.floor(Math.random() * fetchedQuotes.data.length);
+        const quote = fetchedQuotes.data[index];
 
         quotes.push({
-          message: quote,
+          original,
+          message: quote.message,
           substring: mess,
         });
 
@@ -55,6 +58,7 @@ export default async function handler(
       // reached end without finding matching substring
       else if (i === end - 1) {
         quotes.push({
+          original: words[i],
           substring: words[i],
         });
       }
