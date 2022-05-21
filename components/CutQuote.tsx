@@ -22,7 +22,7 @@ const CutQuote: React.FC<CutQuoteProps> = ({ quote }) => {
         style={{
           transform: `rotate(${rotation}deg)`,
           backgroundColor: "#fcfcfc",
-          boxShadow: "0 0 5px #9c9c9c;",
+          boxShadow: "0 0 5px #9c9c9c",
           transformOrigin: "0 0",
           display: "inline-block",
         }}
