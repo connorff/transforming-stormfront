@@ -1,13 +1,17 @@
 import { Button, Grid, Spacer, Textarea, useInput } from "@nextui-org/react";
 import type { NextPage } from "next";
+import { useState } from "react";
+import Paper from "../components/Paper";
 import { findQuotes } from "../utils/api";
+import { Quote } from "./api/generate";
 
 const Home: NextPage = () => {
   const { value: message, bindings } = useInput("");
+  const [quotes, setQuotes] = useState<Quote[]>([]);
 
   const fetchResults = async () => {
     const res = await findQuotes(message);
-    console.log(res);
+    setQuotes(res);
   };
 
   return (
@@ -16,6 +20,7 @@ const Home: NextPage = () => {
         <Textarea
           placeholder="Type your message here"
           style={{ minHeight: "25vh" }}
+          size="lg"
           {...bindings}
         />
         <Spacer y={0.5} />
@@ -23,7 +28,11 @@ const Home: NextPage = () => {
           Submit
         </Button>
       </Grid>
-      <Grid xs={12} sm={8}></Grid>
+      <Grid sm={1} />
+      <Grid xs={12} sm={6}>
+        <Paper quotes={quotes} />
+      </Grid>
+      <Grid sm={1} />
     </Grid.Container>
   );
 };
