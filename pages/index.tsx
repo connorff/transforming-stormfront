@@ -8,10 +8,13 @@ import { Quote } from "./api/generate";
 const Home: NextPage = () => {
   const { value: message, bindings } = useInput("");
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchResults = async () => {
+    setLoading(true);
     const res = await findQuotes(message);
     setQuotes(res);
+    setLoading(false);
   };
 
   return (
@@ -30,7 +33,7 @@ const Home: NextPage = () => {
       </Grid>
       <Grid sm={1} />
       <Grid xs={12} sm={6}>
-        <Paper quotes={quotes} />
+        <Paper quotes={quotes} loading={loading} />
       </Grid>
       <Grid sm={1} />
     </Grid.Container>
