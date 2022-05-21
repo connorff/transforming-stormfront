@@ -14,8 +14,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Quote[]>
 ) {
-  // fetch list of words from message
-  const message: string = req.body.data["message"];
+  // fetch list of words from message (remove newlines)
+  const message: string = req.body.data["message"].replace(/\r?\n|\r/, ' ');
   const words = message
     .split(" ")
     .filter((str) => str.replace(/\s/g, "") !== "");
