@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Grid.Container gap={2} justify="center">
+    <Grid.Container gap={2} justify="center" css={{ mt: "$1" }}>
       <Grid sm={1} />
       <Grid xs={12} sm={4} direction="column">
         <Textarea
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           {...bindings}
         />
         <Spacer y={0.5} />
-        <Button style={{ maxWidth: "5em" }} size="sm" onClick={fetchResults}>
+        <Button style={{ maxWidth: "5em", backgroundColor: "#2972F5" }} size="sm" onClick={fetchResults}>
           Submit
         </Button>
       </Grid>
