@@ -1,8 +1,16 @@
-import { Button, Grid, Spacer, Textarea, useInput } from "@nextui-org/react";
+import {
+  Button,
+  Grid,
+  Spacer,
+  Textarea,
+  Text,
+  useInput,
+  Radio,
+} from "@nextui-org/react";
 import type { NextPage } from "next";
 import { useState } from "react";
 import Paper from "../components/Paper";
-import { findQuotes } from "../utils/api";
+import { fetchExample, findQuotes } from "../utils/api";
 import { Quote } from "./api/generate";
 
 const Home: NextPage = () => {
@@ -17,6 +25,11 @@ const Home: NextPage = () => {
     setLoading(false);
   };
 
+  const showExample = async (example: string | number) => {
+    const res = await fetchExample(example as string);
+    setQuotes(res);
+  };
+
   return (
     <Grid.Container gap={2} justify="center" css={{ mt: "$1" }}>
       <Grid sm={1} />
@@ -28,9 +41,29 @@ const Home: NextPage = () => {
           {...bindings}
         />
         <Spacer y={0.5} />
-        <Button style={{ maxWidth: "5em", backgroundColor: "#2972F5" }} size="sm" onClick={fetchResults}>
+        <Button
+          style={{ maxWidth: "5em", backgroundColor: "#2972F5" }}
+          size="sm"
+          onClick={fetchResults}
+        >
           Submit
         </Button>
+        <Spacer y={1} />
+        <Text>Or try an example:</Text>
+        <Radio.Group onChange={showExample}>
+          <Radio value="ceremony" size="sm">
+            Ceremony<Radio.Description>Leslie Marmon Silko</Radio.Description>
+          </Radio>
+          <Radio value="hill-we-climb" size="sm">
+            The Hill We Climb<Radio.Description>Amanda Gorman</Radio.Description>
+          </Radio>
+          <Radio value="homegoing" size="sm">
+            Homegoing<Radio.Description>Yaa Gyasi</Radio.Description>
+          </Radio>
+          <Radio value="things-fall-apart" size="sm">
+            Things Fall Apart<Radio.Description>Chinua Achebe</Radio.Description>
+          </Radio>
+        </Radio.Group>
       </Grid>
       <Grid sm={1} />
       <Grid xs={12} sm={5}>
