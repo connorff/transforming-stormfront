@@ -1,9 +1,13 @@
 import { NextPage } from "next";
 import { Container, Grid, Image, Spacer, Text } from "@nextui-org/react";
+import Head from "next/head";
 
 const About: NextPage = () => {
   return (
     <Grid.Container justify="center" css={{ mt: "$5" }}>
+      <Head>
+        <title>About Transforming Stormfront</title>
+      </Head>
       <Grid xs={10} sm={4}>
         <Image src="./condemnation.jpg" alt="Default Image" objectFit="cover" />
       </Grid>

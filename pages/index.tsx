@@ -8,6 +8,7 @@ import {
   Radio,
 } from "@nextui-org/react";
 import type { NextPage } from "next";
+import Head from "next/head";
 import { useState } from "react";
 import Paper from "../components/Paper";
 import { fetchExample, findQuotes } from "../utils/api";
@@ -32,6 +33,9 @@ const Home: NextPage = () => {
 
   return (
     <Grid.Container gap={2} justify="center" css={{ mt: "$1" }}>
+      <Head>
+        <title>Transforming Stormfront</title>
+      </Head>
       <Grid sm={1} />
       <Grid xs={12} sm={4} direction="column">
         <Textarea
