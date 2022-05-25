@@ -1,4 +1,5 @@
 import { Loading, Row } from "@nextui-org/react";
+import { memo } from "react";
 import { Quote } from "../pages/api/generate";
 import styles from "../styles/Paper.module.css";
 import CutQuote from "./CutQuote";
@@ -8,7 +9,8 @@ type PaperProps = {
   loading: boolean;
 };
 
-const Paper: React.FC<PaperProps> = ({ quotes, loading }) => {
+// eslint-disable-next-line react/display-name
+const Paper: React.FC<PaperProps> = memo(({ quotes, loading }) => {
   return (
     <div className={styles.notepad}>
       <div className={styles.top}></div>
@@ -28,6 +30,6 @@ const Paper: React.FC<PaperProps> = ({ quotes, loading }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Paper;
