@@ -36,6 +36,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Transforming Stormfront</title>
       </Head>
+      <Grid xs={12} justify="center">
+        <Button size="lg" style={{ backgroundColor: "#FDEFD8", color: "#BD7D17" }}>Content Warning: quotes contain racism, slurs, and general hate</Button>
+      </Grid>
       <Grid sm={1} />
       <Grid xs={12} sm={4} direction="column">
         <Textarea
