@@ -19,6 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <Grid.Container gap={2} justify="center">
+      <Grid sm={1} />
       <Grid xs={12} sm={4} direction="column">
         <Textarea
           placeholder="Type your message here"
@@ -32,7 +33,7 @@ const Home: NextPage = () => {
         </Button>
       </Grid>
       <Grid sm={1} />
-      <Grid xs={12} sm={6}>
+      <Grid xs={12} sm={5}>
         <Paper quotes={quotes} loading={loading} />
       </Grid>
       <Grid sm={1} />
